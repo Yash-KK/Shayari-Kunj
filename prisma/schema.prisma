@@ -13,8 +13,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+  id    Int    @id @default(autoincrement())
+  email String @unique
+}
+
+model Shayari {
+  id          Int           @id @default(autoincrement())
+  description String
+  author      String
+  likes       Int
+  status      ShayariStatus
+  tags        Tag[]
+}
+
+model Tag {
+  id   Int       @id @default(autoincrement())
+  name String
+  tags Shayari[]
+}
+
+enum ShayariStatus {
+  Approved
+  InProgres
+  Rejected
 }
