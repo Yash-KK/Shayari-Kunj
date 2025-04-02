@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
-import { tags } from "../data/shayaris";
-import { Hash, Home, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Hash, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { fetchTags } from "@/data/shayaris";
 
 interface SidebarProps {
   selectedTopic: string;
@@ -17,6 +17,24 @@ export default function Sidebar({
   isSidebarOpen,
   toggleSidebar,
 }: SidebarProps) {
+  const [tags, setTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    const getTags = async () => {
+      try {
+        const data = await fetchTags();
+        if (Array.isArray(data)) {
+          setTags(data);
+        } else {
+          console.error("Unexpected response format:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+      }
+    };
+    getTags();
+  }, []);
+
   return (
     <>
       <motion.button
@@ -77,7 +95,7 @@ export default function Sidebar({
                   All Shayaris
                 </motion.button>
 
-                {tags.map((tag, index) => (
+                {tags.map((tag) => (
                   <motion.button
                     key={tag}
                     initial={{ opacity: 0, x: -20 }}

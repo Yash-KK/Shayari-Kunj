@@ -1,24 +1,24 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Copy, Check, Heart } from "lucide-react";
+import { X, Copy, Check } from "lucide-react";
 import type { Shayari } from "../data/shayaris";
 
 interface ShayariModalProps {
   isOpen: boolean;
   onClose: () => void;
   shayari: Shayari;
-  liked: boolean;
-  likeCount: number;
-  onLike: (e: React.MouseEvent) => void;
+  // liked: boolean;
+  // likeCount: number;
+  // onLike: (e: React.MouseEvent) => void;
 }
 
 export default function ShayariModal({
   isOpen,
   onClose,
   shayari,
-  liked,
-  likeCount,
-  onLike,
+  // liked,
+  // likeCount,
+  // onLike,
 }: ShayariModalProps) {
   const [copied, setCopied] = React.useState(false);
 
@@ -48,7 +48,7 @@ export default function ShayariModal({
               border border-purple-500/20"
           >
             <div className="flex justify-between items-start mb-6">
-              <motion.button
+              {/* <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={onLike}
                 className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
@@ -58,7 +58,7 @@ export default function ShayariModal({
                   className={liked ? "fill-purple-400 text-purple-400" : ""}
                 />
                 <span className="text-sm">{likeCount}</span>
-              </motion.button>
+              </motion.button> */}
 
               <button
                 onClick={onClose}
@@ -70,7 +70,7 @@ export default function ShayariModal({
 
             <div className="space-y-6">
               <p
-                className={`text-2xl text-gray-200 font-medium leading-relaxed`}
+                className={`font-mono text-2xl text-gray-200 font-medium leading-relaxed`}
               >
                 {shayari.description}
               </p>
