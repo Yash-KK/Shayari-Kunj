@@ -2,10 +2,24 @@ import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  const shayaris = await prisma.shayari.findMany({});
+  const shayaris = await prisma.shayari.findMany({
+    select: {
+      id: true,
+      description: true,
+      author: true,
+      tags: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+  const formattedShayaris = shayaris.map((shayari) => ({
+    ...shayari,
+    tags: shayari.tags.map((tag) => tag.name),
+  }));
   return NextResponse.json({
-    status: true,
-    shayaris,
+    formattedShayaris,
   });
 }
 
