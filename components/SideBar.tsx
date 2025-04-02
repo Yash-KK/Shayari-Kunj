@@ -56,7 +56,7 @@ export default function Sidebar({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => onTopicSelect("")}
-                  className="text-2xl font-bold"
+                  className="cursor-pointer text-2xl font-bold"
                 >
                   Shayari Kunj
                 </motion.button>
