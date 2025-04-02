@@ -8,11 +8,17 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "bun prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.5.0",
+    "framer-motion": "^12.6.3",
+    "lucide-react": "^0.487.0",
     "next": "15.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.16.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,6 +30,7 @@
     "eslint-config-next": "15.2.4",
     "prisma": "^6.5.0",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
