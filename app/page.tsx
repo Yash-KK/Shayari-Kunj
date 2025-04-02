@@ -1,17 +1,27 @@
 "use client";
-import React, { useState } from "react";
-import { shayaris } from "@/data/shayaris";
+import React, { useState, useEffect } from "react";
+import { fetchShayaris, Shayari } from "@/data/shayaris";
 import Sidebar from "@/components/SideBar";
 import ShayariOfTheDay from "@/components/ShayariOfTheDay";
 import SubmitShayari from "@/components/SubmitShayari";
-import RenderLandingPage from "@/components/LandingPage";
-import RenderShayariList from "@/components/ShayariList";
+import LandingPage from "@/components/LandingPage";
+import ShayariList from "@/components/ShayariList";
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isShayariOfDayOpen, setIsShayariOfDayOpen] = useState(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
+  const [shayaris, setShayaris] = useState<Shayari[]>([]);
+
+  useEffect(() => {
+    const loadShayaris = async () => {
+      const data = await fetchShayaris();
+      setShayaris(data);
+    };
+
+    loadShayaris();
+  }, []);
 
   const getShayariOfTheDay = () => {
     const today = new Date().toDateString();
@@ -44,13 +54,13 @@ function App() {
       >
         <div className="max-w-7xl mx-auto">
           {selectedTopic ? (
-            <RenderShayariList
+            <ShayariList
               setIsShayariOfDayOpen={setIsShayariOfDayOpen}
               setIsSubmitOpen={setIsSubmitOpen}
               filteredShayaris={filteredShayaris}
             />
           ) : (
-            <RenderLandingPage setSelectedTopic={setSelectedTopic} />
+            <LandingPage setSelectedTopic={setSelectedTopic} />
           )}
         </div>
       </main>

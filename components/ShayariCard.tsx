@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Copy, Check, Heart } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import ShayariModal from "./ShayariModal";
 import { Shayari } from "@/data/shayaris";
 
@@ -10,8 +10,8 @@ interface ShayariCardProps {
 
 export default function ShayariCard({ shayari }: ShayariCardProps) {
   const [copied, setCopied] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 100));
+  // const [liked, setLiked] = useState(false);
+  // const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 100));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCopy = (e: React.MouseEvent) => {
@@ -21,15 +21,15 @@ export default function ShayariCard({ shayari }: ShayariCardProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleLike = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!liked) {
-      setLikeCount((prev) => prev + 1);
-    } else {
-      setLikeCount((prev) => prev - 1);
-    }
-    setLiked(!liked);
-  };
+  // const handleLike = (e: React.MouseEvent) => {
+  //   e.stopPropagation();
+  //   if (!liked) {
+  //     setLikeCount((prev) => prev + 1);
+  //   } else {
+  //     setLikeCount((prev) => prev - 1);
+  //   }
+  //   setLiked(!liked);
+  // };
   return (
     <>
       <motion.div
@@ -38,7 +38,7 @@ export default function ShayariCard({ shayari }: ShayariCardProps) {
         onClick={() => setIsModalOpen(true)}
       >
         <div className="flex justify-between items-start mb-4">
-          <motion.button
+          {/* <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={handleLike}
             className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
@@ -48,7 +48,7 @@ export default function ShayariCard({ shayari }: ShayariCardProps) {
               className={liked ? "fill-purple-400 text-purple-400" : ""}
             />
             <span className="text-sm">{likeCount}</span>
-          </motion.button>
+          </motion.button> */}
 
           <button
             onClick={handleCopy}
@@ -94,9 +94,9 @@ export default function ShayariCard({ shayari }: ShayariCardProps) {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         shayari={shayari}
-        liked={liked}
-        likeCount={likeCount}
-        onLike={handleLike}
+        // liked={liked}
+        // likeCount={likeCount}
+        // onLike={handleLike}
       />
     </>
   );

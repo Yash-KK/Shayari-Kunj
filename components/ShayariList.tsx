@@ -3,13 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Shayari } from "@/data/shayaris";
 import ShayariCard from "./ShayariCard";
 
-
-interface RenderShayariListProps {
-    setIsShayariOfDayOpen: (value:boolean) => void
-    setIsSubmitOpen: (value:boolean) => void
-    filteredShayaris: Shayari[]
-} 
-const RenderShayariList = ({setIsShayariOfDayOpen, setIsSubmitOpen, filteredShayaris}: RenderShayariListProps) => {
+interface ShayariListProps {
+  setIsShayariOfDayOpen: (value: boolean) => void;
+  setIsSubmitOpen: (value: boolean) => void;
+  filteredShayaris: Shayari[];
+}
+const ShayariList = ({
+  setIsShayariOfDayOpen,
+  setIsSubmitOpen,
+  filteredShayaris,
+}: ShayariListProps) => {
   return (
     <>
       <div className="flex flex-col gap-6 mb-12">
@@ -66,4 +69,4 @@ const RenderShayariList = ({setIsShayariOfDayOpen, setIsSubmitOpen, filteredShay
   );
 };
 
-export default RenderShayariList;
+export default ShayariList;

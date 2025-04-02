@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { QuoteIcon, ArrowRight } from "lucide-react";
 
-interface RenderLandingPageProps {
+interface LandingPageProps {
   setSelectedTopic: (topic: string) => void;
 }
-const RenderLandingPage = ({ setSelectedTopic }: RenderLandingPageProps) => {
+const LandingPage = ({ setSelectedTopic }: LandingPageProps) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-3xl mx-auto">
@@ -12,7 +12,11 @@ const RenderLandingPage = ({ setSelectedTopic }: RenderLandingPageProps) => {
           <QuoteIcon size={60} className="text-purple-400" />
         </div>
         <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
-          Shayari Kunj – Alfazon Ka Ek Mehka Hua Bagh{" "}
+          <div className="font-bubblegum text-8xl">Shayari Kunj</div>
+          <div className="font-bubblegum ">
+            {" "}
+            – Alfazon Ka Ek Mehka Hua Bagh{" "}
+          </div>
         </h1>
         <p className="text-xl text-gray-300 mb-8">
           Dil ki gehraiyon se nikle alfaaz, jo mohabbat, zindagi aur jazbaat ka
@@ -32,7 +36,7 @@ const RenderLandingPage = ({ setSelectedTopic }: RenderLandingPageProps) => {
       </div>
 
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        {["Love", "Life", "Philosophy"].map((topic, index) => (
+        {["Love", "Life", "Philosophy"].map((topic) => (
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -58,4 +62,4 @@ const RenderLandingPage = ({ setSelectedTopic }: RenderLandingPageProps) => {
   );
 };
 
-export default RenderLandingPage;
+export default LandingPage;
